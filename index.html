@@ -1,11 +1,15 @@
 <!DOCTYPE html>
 <body>
   <head>
-	<title>
-		2grave portfolio
-	</title>
-	<link rel="stylesheet" href="index.css" type="text/css">
+    <title>
+      2grave portfolio
+    </title>
+    <link rel="stylesheet" href="style.css" type="text/css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Roboto+Mono:ital,wght@0,100..700;1,100..700&display=swap" rel="stylesheet">
   </head>
+
   <body>
     <h1 title="surprise"><b>Welcome to my simple portfolio</b></h1>
       <p title="god knows how many projects there are">
@@ -13,45 +17,60 @@
       <p>Here are my favorite projects:</p>
   </body>
 
-    <button class="accordion">PMK - Puma Mechanical Keyboard</button>
-      <div class="panel">
-        <p>The goal is to make a suit of wireless devices such as "smart keyboard" (combined mouse and keyboard), gamepad, LEDs, knobs, display, etc</p>
-        <p>The first step is to make a wireless split keyboard, and then we will see later...</p>
-        <p>Currently, you can connect up to 8 (software limited) devices per dongle, each of them having up to 8 (software limited) layers. Layers only affect keyboards and LED.</p>
-        <p>Find more info on the <a href="https://github.com/PumaFPV/PMK">GitHub repo</a></p>
-        <p>And on the <a href="https://swamp-zydeco-907.notion.site/PMK-b41d42fec8c74b02bc73637fae3648d7?pvs=25">Notion management page</a> (requires an account :( )</p>
-      </div>
+  <div class="tab_left">
+    <button class="tablinks" onclick="openProject(event, 'PMK')">PMK - Puma Mechanical Keyboard</button>
+    <button class="tablinks" onclick="openProject(event, 'PSOM')">PSoM - Pico System on Module</button>
+    <button class="tablinks" onclick="openProject(event, 'PUMATX')">PumaTX</button>
+  </div>
 
-    <button class="accordion">PSoM - Pico System on Module</button>
-      <div class="panel">
-        <p>After doing a few project and having to route again and again the same microcontroller, I figured it would be easier to make my own SoM standard.</p>
-        <p>It includes an MCU and a 1S Lipo/LiIon charger in a 20x20mm form factor. And offers most of the GPIO (if not all) from the MCU. </p>
-        <p>Currently ESP32S2 PSoM exists and works.</p>
-        <p>Find more info on the <a href="https://github.com/PumaFPV/PSoM">GitHub repo</a></p>
-      </div>
-    
-    <button class="accordion">PumaTX</button>
-      <div class="panel">
-        <p>I've been doing FPV for almost 10 years now, and loved taking my drones when I hiked in the mountains.</p>
-        <p>But all RC controller are bulky and quite fragile, the DJI Mavic controller on the other hand doesn't have any fragile piece sticking out and can be folded to be very compact (on top of being light).</p>
-        <p>So here the goal is to integrate some sort of OpenTX/EdgeTX alternative with ExpressLRS radio module in a DJI Mavic remote.</p>
-        <p>As of today, I've reversed engineered the display and joystick protocol and made my own motherboard that fits inside of the GL200A (DJI Mavic's controller).</p>
-        <p>Find more info on the <a href="https://github.com/PumaFPV/PumaTX">GitHub repo</a></p>
-      </div> 
+  <div class="tab_right">
+    <button class="tablinks_right" onclick="openProject(event, 'CV')">CV</button>
+  </div>
 
-    <p></p>
-    <p></p>
-    <p></p>
-    <p></p>
-    <p></p>
-    <p></p>
-    <p></p>
+  <div id="PMK" class="tabcontent">
+    <span onclick="this.parentElement.style.display='none'" class="topright">&times</span>
+    <h3>PMK</h3>
+    <p>The goal is to make a suit of wireless devices such as "smart keyboard" (combined mouse and keyboard), gamepad, LEDs, knobs, display, etc</p>
+    <p>The first step is to make a wireless split keyboard, and then we will see later...</p>
+    <p>Currently, you can connect up to 8 (software limited) devices per dongle, each of them having up to 8 (software limited) layers. Layers only affect keyboards and LED.</p>
+    <p>Find more info on the <a href="https://github.com/PumaFPV/PMK">GitHub repo</a></p>
+    <p>And on the <a href="https://swamp-zydeco-907.notion.site/PMK-b41d42fec8c74b02bc73637fae3648d7?pvs=25">Notion management page</a> (requires an account :( )</p>
+  </div>
 
-    <button class="accordion">CV</button>
-      <div class="panel">
-        <object width="100%" height="800px" data="CV Nicolas de Grave.pdf"></object>
-      </div>
+  <div id="PSOM" class="tabcontent">
+    <span onclick="this.parentElement.style.display='none'" class="topright">&times</span>
+    <h3>PSoM</h3>
+    <p>After doing a few project and having to route again and again the same microcontroller, I figured it would be easier to make my own SoM standard.</p>
+    <p>It includes an MCU and a 1S Lipo/LiIon charger in a 20x20mm form factor. And offers most of the GPIO (if not all) from the MCU. </p>
+    <p>Currently ESP32S2 PSoM exists and works.</p>
+    <p>Find more info on the <a href="https://github.com/PumaFPV/PSoM">GitHub repo</a></p>
+  </div>
+
+  <div id="PUMATX" class="tabcontent">
+    <span onclick="this.parentElement.style.display='none'" class="topright">&times</span>
+    <h3>PumaTX</h3>
+    <p>I've been doing FPV for almost 10 years now, and loved taking my drones when I hiked in the mountains.</p>
+    <p>But all RC controller are bulky and quite fragile, the DJI Mavic controller on the other hand doesn't have any fragile piece sticking out and can be folded to be very compact (on top of being light).</p>
+    <p>So here the goal is to integrate some sort of OpenTX/EdgeTX alternative with ExpressLRS radio module in a DJI Mavic remote.</p>
+    <p>As of today, I've reversed engineered the display and joystick protocol and made my own motherboard that fits inside of the GL200A (DJI Mavic's controller).</p>
+    <p>Find more info on the <a href="https://github.com/PumaFPV/PumaTX">GitHub repo</a></p>
+  </div>
+
+  <div id="CV" class="tabcontent">
+    <span onclick="this.parentElement.style.display='none'" class="topright">&times</span>
+    <object width="100%" height="800px" data="CV Nicolas de Grave.pdf"></object>
+  </div>
+
+  <p></p>
+  <p></p>
+  <p></p>
+  <p></p>
+  <p></p>
+  <p></p>
+  <p></p>
+
 
 </body>
 
-<script type="text/javascript" src="index.js"></script>
+<!--<script type="text/javascript" src="vertical.js"></script>-->
+<script type="text/javascript" src="tabs.js"></script>
