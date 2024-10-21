@@ -1,4 +1,4 @@
-// Store the selected keycode mappings
+// Store the selected HID key mappings
 const keyMappings = {};
 
 // Handle key click events
@@ -6,17 +6,35 @@ document.querySelectorAll('.key').forEach(key => {
     key.addEventListener('click', () => {
         const keycode = document.getElementById('keycode-select').value;
         keyMappings[key.dataset.key] = keycode;
-        key.textContent = `HID: ${keycode}`;
+        key.textContent = `HID: ${keycode}`;  // Update the key text to show selected HID
     });
 });
 
 // Handle JSON generation
 document.getElementById('generate-btn').addEventListener('click', () => {
-    const jsonConfig = JSON.stringify(keyMappings, null, 2);
-    downloadJson(jsonConfig, 'keyboard-config.json');
+    // Generate the layer array based on the selected keys
+    const layerArray = [];
+    const totalKeys = 32; // Assuming there are 32 keys in total
+
+    for (let i = 0; i < totalKeys; i++) {
+        if (keyMappings[i]) {
+            layerArray.push(keyMappings[i]);
+        } else {
+            layerArray.push("0x0000"); // Placeholder for keys not yet assigned
+        }
+    }
+
+    // Create the JSON structure
+    const jsonConfig = {
+        "Layer": layerArray
+    };
+
+    // Convert to JSON string and trigger download
+    const jsonString = JSON.stringify(jsonConfig, null, 4); // Pretty-print with indentation
+    downloadJson(jsonString, 'kb-l0.json');
 });
 
-// Function to download JSON
+// Function to download the JSON file
 function downloadJson(json, filename) {
     const blob = new Blob([json], { type: 'application/json' });
     const link = document.createElement('a');

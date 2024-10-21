@@ -38,7 +38,7 @@ html, body {
 }
 
 .key:hover {
-    background-color: chocolate;
+    background-color: rgb(156, 156, 156);
 }
 
 /* Ensure hid-list stays at the bottom */
