@@ -15,13 +15,14 @@ html, body {
 /* Flex container for keyboard and hid-list */
 #keyboard-container {
     position: relative;
-    aspect-ratio: 16 / 9;
+    width: auto;
+    height: auto;
     background: url('TopViewWithCasingNoBG.png') no-repeat left center;
-    background-size: contain;
-    width: 80%;
-    height: 80%; /* Explicit height */
-    margin-top: 0%;
-    margin-bottom: 1%;
+    background-size: contain; /* Ensure image fits inside the container */
+    margin: 0 auto; /* Center the container horizontally */
+    margin-top: 1%;
+    margin-bottom: 2%;
+    border: 1px solid #ccc;
 }
 
 /* Style for the keyboard keys */
@@ -34,6 +35,10 @@ html, body {
     display: flex;
     align-items: center;
     justify-content: center;
+}
+
+.key:hover {
+    background-color: chocolate;
 }
 
 /* Ensure hid-list stays at the bottom */
