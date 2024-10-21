@@ -1,0 +1,62 @@
+/* Ensure body and html take up full height */
+html, body {
+    margin: 0;
+    padding: 0;
+    height: 100%;
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    font-family: Arial, sans-serif;
+    background-color: #f0f0f0;
+}
+
+/* Flex container for keyboard and hid-list */
+#keyboard-container {
+    position: relative;
+    aspect-ratio: 16 / 9;
+    background: url('TopViewWithCasingNoBG.png') no-repeat left center;
+    background-size: contain;
+    width: 80%;
+    height: 80%; /* Explicit height */
+    margin-top: 0%;
+    margin-bottom: 1%;
+}
+
+/* Style for the keyboard keys */
+.key {
+    position: relative;
+    border: 1px solid #ccc;
+    background-color: rgba(193, 193, 193, 0.3);
+    cursor: pointer;
+    text-align: center;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+/* Ensure hid-list stays at the bottom */
+#hid-list {
+    position: relative; /* Fix it to the bottom */
+    bottom: 0;
+    width: 100%;
+    padding: 10px;
+    background-color: #f0f0f0;
+    text-align: center;
+}
+
+/* Style the button */
+#generate-btn {
+    margin-top: 20px;
+    padding: 10px;
+    background-color: #007bff;
+    color: #fff;
+    border: none;
+    cursor: pointer;
+    border-radius: 5px;
+}
+
+#generate-btn:hover {
+    background-color: #0056b3;
+}

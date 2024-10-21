@@ -1,101 +1,114 @@
-<!DOCTYPE HTML>
+<!DOCTYPE html>
 <html lang="en">
 <head>
-	<meta charset="UTF-8">
-	<meta name="viewport" content="width=device-width, initial-scale=1.0">
-	<meta http-equiv="X-UA-Compatible" content="ie=edge">
-	<title>PMK Configurator</title>
-	<style>
-		#key {
-		  width: 50px;
-		  height: 50px;
-		  padding: 10px;
-		  border: 1px solid #aaaaaa;
-		}
-	</style>
-	<script>
-		function allowDrop(ev) {
-		  ev.preventDefault();
-		}
-
-		function drag(ev) {
-		  ev.dataTransfer.setData("text", ev.target.id);
-		}
-
-		function drop(ev) {
-		  ev.preventDefault();
-		  var data = ev.dataTransfer.getData("text");
-		  ev.target.appendChild(document.getElementById(data));
-		}
-	</script>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>PMK Configurator</title>
+    <link rel="stylesheet" href="styles.css">
 </head>
 <body>
-<h1>PMK layout configurator</h1>
+    <div id="keyboard-container">
+        <!-- Example of keys (you will need to adjust positions for your layout) -->
+        <div class="key" data-key="0" style="top: 11%; left: 2.5%; width: 8%; height: 14%;">0</div>
+        <div class="key" data-key="1" style="top: -3.1%; left: 11.5%; width: 8%; height: 14%;">1</div>
+        <div class="key" data-key="2" style="top: 0%; left: 0%; width: 7.5%; height: 14%;">2</div>
+        <div class="key" data-key="3" style="top: 0%; left: 0%; width: 7.5%; height: 14%;">3</div>
+        <div class="key" data-key="4" style="top: 0%; left: 0%; width: 7.5%; height: 14%;">4</div>
+        <div class="key" data-key="5" style="top: 0%; left: 0%; width: 7.5%; height: 14%;">5</div>
 
-<p>Drag the desired function on each keys:</p>
-<form method="post" action="gfg.php">
-<div id="layout_config">
-<table>
-	<tr>
-		<td><div id="key" name="key6" ondrop="drop(event)" ondragover="allowDrop(event)"></div></td>
-		<td><div id="key" name="key5" ondrop="drop(event)" ondragover="allowDrop(event)"></div></td>
-		<td><div id="key" name="key4" ondrop="drop(event)" ondragover="allowDrop(event)"></div></td>
-		<td><div id="key" name="key3" ondrop="drop(event)" ondragover="allowDrop(event)"></div></td>
-		<td><div id="key" name="key2" ondrop="drop(event)" ondragover="allowDrop(event)"></div></td>
-		<td><div id="key" name="key1" ondrop="drop(event)" ondragover="allowDrop(event)"></div></td>
-	</tr>
-	<tr>
-		<td><div id="key" name="key7" ondrop="drop(event)" ondragover="allowDrop(event)"></div></td>
-		<td><div id="key" name="key8" ondrop="drop(event)" ondragover="allowDrop(event)"></div></td>
-		<td><div id="key" name="key12" ondrop="drop(event)" ondragover="allowDrop(event)"></div></td>
-		<td><div id="key" name="key11" ondrop="drop(event)" ondragover="allowDrop(event)"></div></td>
-		<td><div id="key" name="key10" ondrop="drop(event)" ondragover="allowDrop(event)"></div></td>
-		<td><div id="key" name="key9" ondrop="drop(event)" ondragover="allowDrop(event)"></div></td>
-	</tr>
-	<tr>
-		<td><div id="key" name="key13" ondrop="drop(event)" ondragover="allowDrop(event)"></div></td>
-		<td><div id="key" name="key14" ondrop="drop(event)" ondragover="allowDrop(event)"></div></td>
-		<td><div id="key" name="key15" ondrop="drop(event)" ondragover="allowDrop(event)"></div></td>
-		<td><div id="key" name="key16" ondrop="drop(event)" ondragover="allowDrop(event)"></div></td>
-		<td><div id="key" name="key18" ondrop="drop(event)" ondragover="allowDrop(event)"></div></td>
-		<td><div id="key" name="key17" ondrop="drop(event)" ondragover="allowDrop(event)"></div></td>
-	</tr>
-	<tr>
-		<td><div id="key" name="key19" ondrop="drop(event)" ondragover="allowDrop(event)"></div></td>
-		<td><div id="key" name="key20" ondrop="drop(event)" ondragover="allowDrop(event)"></div></td>
-		<td><div id="key" name="key21" ondrop="drop(event)" ondragover="allowDrop(event)"></div></td>
-		<td><div id="key" name="key22" ondrop="drop(event)" ondragover="allowDrop(event)"></div></td>
-		<td><div id="key" name="key23" ondrop="drop(event)" ondragover="allowDrop(event)"></div></td>
-		<td><div id="key" name="key24" ondrop="drop(event)" ondragover="allowDrop(event)"></div></td>
-	</tr>
-	<tr>
-		<td></td>
-		<td></td>
-		<td><div id="key" name="key25" ondrop="drop(event)" ondragover="allowDrop(event)"></div></td>
-		<td><div id="key" name="key26" ondrop="drop(event)" ondragover="allowDrop(event)"></div></td>
-		<td><div id="key" name="key27" ondrop="drop(event)" ondragover="allowDrop(event)"></div></td>
-		<td><div id="key" name="key28" ondrop="drop(event)" ondragover="allowDrop(event)"></div></td>
-		<td><div id="key" name="key29" ondrop="drop(event)" ondragover="allowDrop(event)"></div></td>
-	</tr>
-</table>
 
-<br>
-<p id="q" draggable="true" ondragstart="drag(event)" width="50" height="50">Q</p>
-<p id="w" draggable="true" ondragstart="drag(event)" width="50" height="50">W</p>
-<p id="e" draggable="true" ondragstart="drag(event)" width="50" height="50">E</p>
-<p id="r" draggable="true" ondragstart="drag(event)" width="50" height="50">R</p>
-<p id="t" draggable="true" ondragstart="drag(event)" width="50" height="50">T</p>
-<p id="z" draggable="true" ondragstart="drag(event)" width="50" height="50">Z</p>
-<p id="u" draggable="true" ondragstart="drag(event)" width="50" height="50">U</p>
-<p id="i" draggable="true" ondragstart="drag(event)" width="50" height="50">I</p>
-<p id="o" draggable="true" ondragstart="drag(event)" width="50" height="50">O</p>
-<p id="p" draggable="true" ondragstart="drag(event)" width="50" height="50">P</p>
 
-<label for="dongle_address">Dongle MAC address:</label><br>
-<input type="text" id="dongle_address" name="dongle_address"><br><br><br>
 
-<button id="generate_layout" type="submit" onclick="onsubmit()">Generate layout</button>
-</form>
+        <!-- Add more keys as needed -->
+    </div>
+    <div id="hid-list">
+        <label for="keycode-select">Select HID Keycode:</label>
+        <select id="keycode-select">
+            <option value="0x04">A</option>
+            <option value="0x05">B</option>
+            <option value="0x06">C</option>
+            <option value="0x07">D</option>
+            <option value="0x08">E</option>
+            <option value="0x09">F</option>
+            <option value="0x0A">G</option>
+            <option value="0x0B">H</option>
+            <option value="0x0C">I</option>
+            <option value="0x0D">J</option>
+            <option value="0x0E">K</option>
+            <option value="0x0F">L</option>
+            <option value="0x10">M</option>
+            <option value="0x11">N</option>
+            <option value="0x12">O</option>
+            <option value="0x13">P</option>
+            <option value="0x14">Q</option>
+            <option value="0x15">R</option>
+            <option value="0x16">S</option>
+            <option value="0x17">T</option>
+            <option value="0x18">U</option>
+            <option value="0x19">V</option>
+            <option value="0x1A">W</option>
+            <option value="0x1B">X</option>
+            <option value="0x1C">Y</option>
+            <option value="0x1D">Z</option>
+            <option value="0x1E">1</option>
+            <option value="0x1F">2</option>
+            <option value="0x20">3</option>
+            <option value="0x21">4</option>
+            <option value="0x22">5</option>
+            <option value="0x23">6</option>
+            <option value="0x24">7</option>
+            <option value="0x25">8</option>
+            <option value="0x26">9</option>
+            <option value="0x27">0</option>
+            <option value="0x28">Enter</option>
+            <option value="0x29">Escape</option>
+            <option value="0x2A">Backspace</option>
+            <option value="0x2B">Tab</option>
+            <option value="0x2C">Space</option>
+            <option value="0x2D">Minus</option>
+            <option value="0x2E">Equals</option>
+            <option value="0x2F">Left Bracket</option>
+            <option value="0x30">Right Bracket</option>
+            <option value="0x31">Backslash</option>
+            <option value="0x32">Non-US Hash</option>
+            <option value="0x33">Semicolon</option>
+            <option value="0x34">Quote</option>
+            <option value="0x35">Grave Accent</option>
+            <option value="0x36">Comma</option>
+            <option value="0x37">Period</option>
+            <option value="0x38">Slash</option>
+            <option value="0x39">Caps Lock</option>
+            <option value="0x3A">F1</option>
+            <option value="0x3B">F2</option>
+            <option value="0x3C">F3</option>
+            <option value="0x3D">F4</option>
+            <option value="0x3E">F5</option>
+            <option value="0x3F">F6</option>
+            <option value="0x40">F7</option>
+            <option value="0x41">F8</option>
+            <option value="0x42">F9</option>
+            <option value="0x43">F10</option>
+            <option value="0x44">F11</option>
+            <option value="0x45">F12</option>
+            <option value="0x46">Print Screen</option>
+            <option value="0x47">Scroll Lock</option>
+            <option value="0x48">Pause</option>
+            <option value="0x49">Insert</option>
+            <option value="0x4A">Home</option>
+            <option value="0x4B">Page Up</option>
+            <option value="0x4C">Delete</option>
+            <option value="0x4D">End</option>
+            <option value="0x4E">Page Down</option>
+            <option value="0x4F">Right Arrow</option>
+            <option value="0x50">Left Arrow</option>
+            <option value="0x51">Down Arrow</option>
+            <option value="0x52">Up Arrow</option>
+        <!-- Add more keycodes as needed -->
+        </select>
+    </div>
+    <div>
+        <button id="generate-btn">Generate JSON</button>
+    </div>
+    <script src="script.js"></script>
 </body>
 </html>
-
