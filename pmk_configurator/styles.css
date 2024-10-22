@@ -17,16 +17,13 @@ html, body {
     position: relative;
     background: url('TopViewWithCasingNoBG.png') no-repeat left center;
     background-size: contain; /* Ensure image fits inside the container */
-    margin: 0 auto; /* Center the container horizontally */
-    margin-top: 1%;
-    margin-bottom: 2%;
+    margin: 0 0; /* Center the container horizontally */
     /*border: 1px solid #ccc;*/
 }
 
 /* Style for the keyboard keys */
 .key {
     position: relative;
-    border: 1px solid #ccc;
     background-color: rgba(193, 193, 193, 0.3);
     cursor: pointer;
     text-align: center;
@@ -37,7 +34,7 @@ html, body {
 }
 
 .key:hover {
-    background-color: rgb(156, 156, 156);
+    background-color: rgba(228, 26, 26, 0.603);
 }
 
 /* Ensure hid-list stays at the bottom */
