@@ -205,38 +205,51 @@ function downloadJson(json, filename) {
 
 
 
+function resizeContainer() {
+    const keyboardContainer = document.getElementById('keyboard-container');
 
-// Get the keyboard container element
-const keyboardContainer = document.getElementById('keyboard-container');
-
-// Load the background image
-const backgroundImage = new Image();
-backgroundImage.src = 'TopViewWithCasingNoBG.png';  // Your image file
-
-// Function to resize the keyboard container based on the image's intrinsic dimensions
-backgroundImage.onload = function () {
-    // Get the intrinsic dimensions of the image
-    const imgWidth = backgroundImage.width;
-    const imgHeight = backgroundImage.height;
-
-    // Function to resize the container while maintaining the image's aspect ratio
-    function resizeContainer() {
-        const viewportWidth = window.innerWidth;  // Get the current viewport width
-
-        // Calculate the container width, 90% of the viewport width but not larger than the image's natural width
-        const containerWidth = Math.min(viewportWidth * 0.9, imgWidth);  // Limit the width to the image width
-
-        // Calculate the height to maintain the aspect ratio
-        const containerHeight = (imgHeight / imgWidth) * containerWidth;
-
-        // Apply the dynamic width and height to the keyboard container
-        keyboardContainer.style.width = `${containerWidth}px`;
-        keyboardContainer.style.height = `${containerHeight}px`;
+    if (!keyboardContainer) {
+        console.error('keyboard-container not found');
+        return;
     }
 
-    // Initial resize when the page loads
-    resizeContainer();
+    // Get the current viewport width
+    const viewportWidth = window.innerWidth;
 
-    // Add an event listener to resize the container whenever the window is resized
-    window.addEventListener('resize', resizeContainer);
-};
+    // Set the container width to 90% of the viewport width, but you can adjust this value
+    const containerWidth = viewportWidth * 0.9;
+
+    // Maintain a 16:9 aspect ratio (height = width * 9 / 16)
+    const containerHeight = containerWidth * 9 / 16;
+
+    // Apply the calculated width and height to the container
+    keyboardContainer.style.width = `${containerWidth}px`;
+    keyboardContainer.style.height = `${containerHeight}px`;
+
+    console.log(`Resized container to width: ${containerWidth}px, height: ${containerHeight}px`);
+}
+
+// Call the function when the page loads and on window resize
+window.addEventListener('load', resizeContainer);
+window.addEventListener('resize', resizeContainer);
+
+
+function resizeContainer() {
+    console.log('resizeContainer called');
+
+    const keyboardContainer = document.getElementById('keyboard-container');
+    
+    if (!keyboardContainer) {
+        console.error('keyboard-container not found');
+        return;
+    }
+
+    const viewportWidth = window.innerWidth;
+    const containerWidth = viewportWidth * 0.9;
+    const containerHeight = containerWidth * 9 / 16;
+
+    console.log(`Container width: ${containerWidth}px, height: ${containerHeight}px`);
+
+    keyboardContainer.style.width = `${containerWidth}px`;
+    keyboardContainer.style.height = `${containerHeight}px`;
+}

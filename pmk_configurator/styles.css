@@ -15,14 +15,12 @@ html, body {
 /* Flex container for keyboard and hid-list */
 #keyboard-container {
     position: relative;
-    width: auto;
-    height: auto;
     background: url('TopViewWithCasingNoBG.png') no-repeat left center;
     background-size: contain; /* Ensure image fits inside the container */
     margin: 0 auto; /* Center the container horizontally */
     margin-top: 1%;
     margin-bottom: 2%;
-    border: 1px solid #ccc;
+    /*border: 1px solid #ccc;*/
 }
 
 /* Style for the keyboard keys */
@@ -64,4 +62,37 @@ html, body {
 
 #generate-btn:hover {
     background-color: #0056b3;
+}
+
+/* Style the layer input container */
+.layer-input-container {
+    margin-top: 10px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+/* Label for layer input */
+.layer-input-container label {
+    font-size: 16px;
+    margin-right: 8px;
+    font-weight: bold;
+}
+
+/* Style for the layer input text box */
+.layer-input {
+    width: 50px;
+    padding: 5px;
+    font-size: 14px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    text-align: center;
+    box-shadow: 0 2px 4px rgba(255, 255, 255, 0.822);
+    transition: border-color 0.3s ease;
+}
+
+/* Focus state for the input box */
+.layer-input:focus {
+    border-color: #007bff;
+    outline: none;
 }
