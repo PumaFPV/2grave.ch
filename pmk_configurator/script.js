@@ -226,30 +226,23 @@ function resizeContainer() {
     keyboardContainer.style.width = `${containerWidth}px`;
     keyboardContainer.style.height = `${containerHeight}px`;
 
-    console.log(`Resized container to width: ${containerWidth}px, height: ${containerHeight}px`);
+    // console.log(`Resized container to width: ${containerWidth}px, height: ${containerHeight}px`);
+    const divElement = document.getElementById('keyboard-container');  // Get the div element
+    const rect = divElement.getBoundingClientRect();  // Get the dimensions and position
+
+    const divWidth = rect.width;  // Width of the div
+    const divHeight = rect.height;  // Height of the div
+
+    // console.log('Div width:', divWidth);
+    // console.log('Div height:', divHeight);
+
+    const divElementKeyboardContainer = document.getElementById('keyboard-container');
+
+    // Set the width dynamically (for example, 400px)
+    divElementKeyboardContainer.style.width = divHeight * 12/9 + 'px';
 }
 
 // Call the function when the page loads and on window resize
 window.addEventListener('load', resizeContainer);
 window.addEventListener('resize', resizeContainer);
 
-
-function resizeContainer() {
-    console.log('resizeContainer called');
-
-    const keyboardContainer = document.getElementById('keyboard-container');
-    
-    if (!keyboardContainer) {
-        console.error('keyboard-container not found');
-        return;
-    }
-
-    const viewportWidth = window.innerWidth;
-    const containerWidth = viewportWidth * 0.9;
-    const containerHeight = containerWidth * 9 / 16;
-
-    console.log(`Container width: ${containerWidth}px, height: ${containerHeight}px`);
-
-    keyboardContainer.style.width = `${containerWidth}px`;
-    keyboardContainer.style.height = `${containerHeight}px`;
-}
