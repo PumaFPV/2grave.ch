@@ -152,8 +152,10 @@ const hidToCharMap = {
     "0x0000": "Unassigned"
 };
 
+
 // Store the selected HID key mappings
 const keyMappings = {};
+
 
 // Handle key click events
 document.querySelectorAll('.key').forEach(key => {
@@ -166,6 +168,7 @@ document.querySelectorAll('.key').forEach(key => {
         key.textContent = char;  // Update the key text to show the character
     });
 });
+
 
 // Handle JSON generation
 document.getElementById('generate-btn').addEventListener('click', () => {
@@ -193,6 +196,7 @@ document.getElementById('generate-btn').addEventListener('click', () => {
     const filename = `kb-l${layerNumber}.json`;
     downloadJson(jsonString, filename);
 });
+
 
 // Function to download the JSON file
 function downloadJson(json, filename) {
@@ -242,46 +246,204 @@ function resizeContainer() {
     divElementKeyboardContainer.style.width = divHeight * 12/9 + 'px';
 }
 
+
 // Call the function when the page loads and on window resize
 window.addEventListener('load', resizeContainer);
 window.addEventListener('resize', resizeContainer);
 
+// Store key mappings
+let selectedHidCode = null;  // Track the selected keycode
 
+// Render the grid of keycodes
 const keycodeGrid = document.getElementById('keycode-grid');
-
-// Iterate over the hidToCharMap to create the grid of keycodes
 for (const [hidCode, char] of Object.entries(hidToCharMap)) {
     const keycodeCell = document.createElement('div');
     keycodeCell.className = 'keycode-cell';
-    keycodeCell.textContent = char;  // Display the character or label
-    keycodeCell.dataset.keycode = hidCode;  // Store the HID code as data attribute
+    keycodeCell.textContent = char;
+    keycodeCell.dataset.keycode = hidCode;
 
-    // Add click event listener to select the keycode
+    // Click event to select keycode
     keycodeCell.addEventListener('click', function() {
-        alert(`Selected key: ${char}, HID code: ${hidCode}`);
-        // Here you can assign the key to a specific key on the keyboard
+        selectedHidCode = hidCode;  // Store the selected HID code
+        alert(`Selected keycode: ${char} (HID code: ${hidCode})`);
     });
 
     // Append the cell to the grid
     keycodeGrid.appendChild(keycodeCell);
 }
 
+
 // Record a keypress from the user
 const recordButton = document.getElementById('record-keypress');
 const keypressDisplay = document.getElementById('keypress-display');
 
+
+const keyEventToHidMap = {
+    'KeyA': '0x04',
+    'KeyB': '0x05',
+    'KeyC': '0x06',
+    'KeyD': '0x07',
+    'KeyE': '0x08',
+    'KeyF': '0x09',
+    'KeyG': '0x0A',
+    'KeyH': '0x0B',
+    'KeyI': '0x0C',
+    'KeyJ': '0x0D',
+    'KeyK': '0x0E',
+    'KeyL': '0x0F',
+    'KeyM': '0x10',
+    'KeyN': '0x11',
+    'KeyO': '0x12',
+    'KeyP': '0x13',
+    'KeyQ': '0x14',
+    'KeyR': '0x15',
+    'KeyS': '0x16',
+    'KeyT': '0x17',
+    'KeyU': '0x18',
+    'KeyV': '0x19',
+    'KeyW': '0x1A',
+    'KeyX': '0x1B',
+    'KeyY': '0x1C',
+    'KeyZ': '0x1D',
+    'Digit1': '0x1E',
+    'Digit2': '0x1F',
+    'Digit3': '0x20',
+    'Digit4': '0x21',
+    'Digit5': '0x22',
+    'Digit6': '0x23',
+    'Digit7': '0x24',
+    'Digit8': '0x25',
+    'Digit9': '0x26',
+    'Digit0': '0x27',
+    'Enter': '0x28',
+    'Escape': '0x29',
+    'Backspace': '0x2A',
+    'Tab': '0x2B',
+    'Space': '0x2C',
+    'Minus': '0x2D',
+    'Equal': '0x2E',
+    'BracketLeft': '0x2F',
+    'BracketRight': '0x30',
+    'Backslash': '0x31',
+    'Semicolon': '0x33',
+    'Quote': '0x34',
+    'Backquote': '0x35',
+    'Comma': '0x36',
+    'Period': '0x37',
+    'Slash': '0x38',
+    'CapsLock': '0x39',
+    'F1': '0x3A',
+    'F2': '0x3B',
+    'F3': '0x3C',
+    'F4': '0x3D',
+    'F5': '0x3E',
+    'F6': '0x3F',
+    'F7': '0x40',
+    'F8': '0x41',
+    'F9': '0x42',
+    'F10': '0x43',
+    'F11': '0x44',
+    'F12': '0x45',
+    'PrintScreen': '0x46',
+    'ScrollLock': '0x47',
+    'Pause': '0x48',
+    'Insert': '0x49',
+    'Home': '0x4A',
+    'PageUp': '0x4B',
+    'Delete': '0x4C',
+    'End': '0x4D',
+    'PageDown': '0x4E',
+    'ArrowRight': '0x4F',
+    'ArrowLeft': '0x50',
+    'ArrowDown': '0x51',
+    'ArrowUp': '0x52',
+    'NumLock': '0x53',
+    'NumpadDivide': '0x54',
+    'NumpadMultiply': '0x55',
+    'NumpadSubtract': '0x56',
+    'NumpadAdd': '0x57',
+    'NumpadEnter': '0x58',
+    'Numpad1': '0x59',
+    'Numpad2': '0x5A',
+    'Numpad3': '0x5B',
+    'Numpad4': '0x5C',
+    'Numpad5': '0x5D',
+    'Numpad6': '0x5E',
+    'Numpad7': '0x5F',
+    'Numpad8': '0x60',
+    'Numpad9': '0x61',
+    'Numpad0': '0x62',
+    'NumpadDecimal': '0x63',
+    'IntlBackslash': '0x64',
+    'ContextMenu': '0x65',
+    'Power': '0x66',
+    'NumpadEqual': '0x67',
+    'F13': '0x68',
+    'F14': '0x69',
+    'F15': '0x6A',
+    'F16': '0x6B',
+    'F17': '0x6C',
+    'F18': '0x6D',
+    'F19': '0x6E',
+    'F20': '0x6F',
+    'F21': '0x70',
+    'F22': '0x71',
+    'F23': '0x72',
+    'F24': '0x73',
+    'Help': '0x75',
+    'Undo': '0x7A',
+    'Cut': '0x7B',
+    'Copy': '0x7C',
+    'Paste': '0x7D',
+    'Mute': '0x7F',
+    'VolumeUp': '0x80',
+    'VolumeDown': '0x81',
+    'NumpadComma': '0x85',
+    'IntlRo': '0x87',
+    'KanaMode': '0x88',
+    'IntlYen': '0x89',
+    'MetaLeft': '0xE3',
+    'MetaRight': '0xE7',
+    'ControlLeft': '0xE0',
+    'ControlRight': '0xE4',
+    'AltLeft': '0xE2',
+    'AltRight': '0xE6',
+    'ShiftLeft': '0xE1',
+    'ShiftRight': '0xE5'
+};
+
+
 recordButton.addEventListener('click', () => {
     keypressDisplay.textContent = 'Waiting for a keypress...';
-    
+
     document.addEventListener('keydown', function onKeyPress(event) {
-        // Display the key pressed and its code
-        keypressDisplay.textContent = `Key pressed: ${event.key}, HID Code: ${event.code}`;
-        
-        // Remove event listener after first keypress
+        // Map event.code to corresponding HID code
+        if (keyEventToHidMap[event.code]) {
+            selectedHidCode = keyEventToHidMap[event.code];
+            const char = hidToCharMap[selectedHidCode];
+            keypressDisplay.textContent = `Key pressed: ${event.key}, HID Code: ${selectedHidCode}`;
+            //alert(`Key pressed: ${event.key}, HID Code: ${selectedHidCode}`);
+        } else {
+            alert('Unrecognized key!');
+        }
+
+        // Remove event listener after the keypress is captured
         document.removeEventListener('keydown', onKeyPress);
-        
-        // Map the key press to a key or log the HID code
-        alert(`Key pressed: ${event.key}, HID Code: ${event.code}`);
-        key.textContent = {event.code};
+    });
+});
+
+
+// Handle key click events on the keyboard
+document.querySelectorAll('.key').forEach(key => {
+    key.addEventListener('click', () => {
+        if (selectedHidCode) {
+            const char = hidToCharMap[selectedHidCode] || selectedHidCode;  // Use character or the keycode
+            key.textContent = char;  // Display the keycode character
+            keyMappings[key.dataset.key] = selectedHidCode;  // Map the key location to the selected keycode
+            console.log(`Mapped key: ${key.dataset.key} to HID code: ${selectedHidCode}`);
+            selectedHidCode = null;  // Reset after mapping
+        } else {
+            alert('Select a keycode first!');
+        }
     });
 });
