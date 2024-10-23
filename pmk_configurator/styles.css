@@ -94,3 +94,38 @@ html, body {
     border-color: #007bff;
     outline: none;
 }
+
+/* Grid for keycodes */
+#keycode-grid {
+    display: grid;
+    grid-template-columns: repeat(10, 1fr);  /* Adjust the number of columns */
+    gap: 10px;
+}
+
+.keycode-cell {
+    background-color: #e0e0e0;
+    padding: 1%;
+    text-align: center;
+    cursor: pointer;
+    border-radius: 10px;
+
+}
+
+.keycode-cell:hover {
+    background-color: #d0d0d0;
+}
+
+/* Style for keypress button */
+#record-keypress {
+    margin-top: 20px;
+    padding: 10px;
+    background-color: #007bff;
+    color: #fff;
+    border: none;
+    cursor: pointer;
+    border-radius: 5px;
+}
+
+#record-keypress:hover {
+    background-color: #0056b3;
+}

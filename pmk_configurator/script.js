@@ -246,3 +246,42 @@ function resizeContainer() {
 window.addEventListener('load', resizeContainer);
 window.addEventListener('resize', resizeContainer);
 
+
+const keycodeGrid = document.getElementById('keycode-grid');
+
+// Iterate over the hidToCharMap to create the grid of keycodes
+for (const [hidCode, char] of Object.entries(hidToCharMap)) {
+    const keycodeCell = document.createElement('div');
+    keycodeCell.className = 'keycode-cell';
+    keycodeCell.textContent = char;  // Display the character or label
+    keycodeCell.dataset.keycode = hidCode;  // Store the HID code as data attribute
+
+    // Add click event listener to select the keycode
+    keycodeCell.addEventListener('click', function() {
+        alert(`Selected key: ${char}, HID code: ${hidCode}`);
+        // Here you can assign the key to a specific key on the keyboard
+    });
+
+    // Append the cell to the grid
+    keycodeGrid.appendChild(keycodeCell);
+}
+
+// Record a keypress from the user
+const recordButton = document.getElementById('record-keypress');
+const keypressDisplay = document.getElementById('keypress-display');
+
+recordButton.addEventListener('click', () => {
+    keypressDisplay.textContent = 'Waiting for a keypress...';
+    
+    document.addEventListener('keydown', function onKeyPress(event) {
+        // Display the key pressed and its code
+        keypressDisplay.textContent = `Key pressed: ${event.key}, HID Code: ${event.code}`;
+        
+        // Remove event listener after first keypress
+        document.removeEventListener('keydown', onKeyPress);
+        
+        // Map the key press to a key or log the HID code
+        alert(`Key pressed: ${event.key}, HID Code: ${event.code}`);
+        key.textContent = {event.code};
+    });
+});
