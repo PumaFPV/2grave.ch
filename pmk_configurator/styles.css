@@ -12,6 +12,13 @@ html, body {
     background-color: #f0f0f0;
 }
 
+#heading {
+    font-family: "Roboto Mono", monospace;
+    font-size: 300%;
+    font-style: normal;
+    font-weight: bold;
+}
+
 /* Flex container for keyboard and hid-list */
 #keyboard-container {
     position: relative;
@@ -34,7 +41,7 @@ html, body {
 }
 
 .key:hover {
-    background-color: rgba(228, 26, 26, 0.603);
+    background-color: rgba(201, 201, 201, 0.603);
 }
 
 /* Ensure hid-list stays at the bottom */
